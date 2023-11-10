@@ -13,13 +13,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { data } from "./data";
+import CartNavBar from "./CartNavBar";
 interface Props {}
 interface State {
   value: number;
   products: Array<object>;
 }
 
-export default class ItemCardDesign extends Component<Props, State> {
+export default class ItemCarDesign extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -27,16 +28,16 @@ export default class ItemCardDesign extends Component<Props, State> {
       products: data,
     };
   }
-  itemCartComponent = (item:any) => {
+  itemCartComponent = (item: any) => {
     return (
       <>
         <CartContainerBox>
           <CartDetailsBox>
             <ImgComponent
               style={webStyles.cart_img}
-            //   src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9vbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              //   src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9vbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
               alt={item.name}
-            src={item.image}
+              src={item.image}
             />
             <Box>
               <CartItemTitleTxt>{item.name}</CartItemTitleTxt>
@@ -72,9 +73,10 @@ export default class ItemCardDesign extends Component<Props, State> {
     return (
       <Box>
         <Container>
+          <CartNavBar />
           {/* Accordion box */}
-          {products.map((element:any) => (
-            <AccordionBox >
+          {products.map((element: any) => (
+            <AccordionBox>
               <AccordionSummaryBox
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -83,7 +85,9 @@ export default class ItemCardDesign extends Component<Props, State> {
                 <CartTitleTxt>{element.name}</CartTitleTxt>
               </AccordionSummaryBox>
               <AccordionDetailsBox>
-                {element.product.map((item:any) =>this.itemCartComponent(item))}
+                {element.product.map((item: any) =>
+                  this.itemCartComponent(item)
+                )}
               </AccordionDetailsBox>
             </AccordionBox>
           ))}
